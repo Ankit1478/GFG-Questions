@@ -70,8 +70,7 @@ class Solution {
         Arrays.fill(parent,-1);  
         
         for(int i=0;i<V;i++)
-            if(vis[i]==false) 
-                if(checkForCycle(adj, i,vis, parent)) 
+            if(vis[i]==false && checkForCycle(adj, i,vis, parent)) 
                     return true;
     
         return false;
