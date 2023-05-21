@@ -32,19 +32,36 @@ class Solution
         int n =s1.length();
         int m =s2.length();
         
-        int dp[][]= new int[n][m];
+        int dp[][]= new int[n+1][m+1];
         for(int row[]:dp){
             Arrays.fill(row,-1);
         }
-        return f(x-1,y-1,s1,s2,dp);
-    }
-    static int f(int x,int y,String s1,String s2,int dp[][]){
-        if(x<0 || y<0) return 0;
-        
-        if(dp[x][y]!=-1) return dp[x][y];
-        if(s1.charAt(x)==s2.charAt(y)){
-          return dp[x][y] = 1+f(x-1,y-1,s1,s2,dp);
+        for(int i=0;i<=m;i++){
+            dp[0][i]=0;
         }
-        return dp[x][y]=Math.max(f(x-1,y,s1,s2,dp),f(x,y-1,s1,s2,dp));
+         for(int i=0;i<=n;i++){
+            dp[i][0]=0;
+        }
+        for(int idx1=1;idx1<=n;idx1++){
+            for(int idx2 =1;idx2<=m;idx2++){
+                if(s1.charAt(idx1-1)==s2.charAt(idx2-1)){
+                    dp[idx1][idx2]=1+dp[idx1-1][idx2-1];
+                }
+                else{
+                    dp[idx1][idx2]=Math.max(dp[idx1-1][idx2],dp[idx1][idx2-1]);
+                }
+            }
+        }
+        return dp[n][m];
+        
     }
+    // static int f(int x,int y,String s1,String s2,int dp[][]){
+    //     if(x<0 || y<0) return 0;
+        
+    //     if(dp[x][y]!=-1) return dp[x][y];
+    //     if(s1.charAt(x)==s2.charAt(y)){
+    //       return dp[x][y] = 1+f(x-1,y-1,s1,s2,dp);
+    //     }
+    //     return dp[x][y]=Math.max(f(x-1,y,s1,s2,dp),f(x,y-1,s1,s2,dp));
+    // }
 }
