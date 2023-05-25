@@ -71,7 +71,7 @@ class Solution {
 
         // Push the source node to the queue.
         pq.add(new Pair(0, 1)); 
-        while(pq.size() != 0) {
+        while(!pq.isEmpty()) {
 
             // Topmost element of the priority queue is with minimum distance value.
             Pair it = pq.peek(); 
