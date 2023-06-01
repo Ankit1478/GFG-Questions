@@ -34,30 +34,48 @@ class GFG {
 
 class Solution {
     // Function to detect cycle in an undirected graph.
-    
-    static boolean util(int node,int parent,boolean vis[] ,ArrayList<ArrayList<Integer>> adj){
-         vis[node] = true;
-        for (Integer it : adj.get(node)) {
-            if (!vis[it] ){
-                  if(util(it, node, vis, adj)) {
-                return true;
-                  }
-            } else if (parent != it) {
-                return true;
-            }
+    static class Pair {
+        int first;
+        int second;
+
+        Pair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+    static boolean  detectcycle(int node, int[]par,boolean vis[],ArrayList<ArrayList<Integer>> adj){
+        Queue<Pair>q = new LinkedList<>();
+        vis[node]=true;
+        
+        q.add(new Pair(node,0));
+        
+        while(!q.isEmpty()){
+          int nodes = q.peek().first;
+          int parent =q.peek().second;
+          q.poll();
+          
+          for(Integer its : adj.get(nodes)){
+              if(!vis[its]){
+                  q.add(new Pair(its,nodes));
+                  vis[its]=true;
+              }
+              else if(parent !=its) return true;
+          }
         }
         return false;
     }
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-         boolean[] vis = new boolean[V];
-        for (int i = 0; i < V; i++) {
-            if (!vis[i] ){
-                if(util(i, -1, vis, adj)) {
-                return true;
+        boolean vis[]= new boolean[V];
+        Arrays.fill(vis,false);
+        int par []= new int[V];
+        for(int i=0;i<V;i++){
+            if(vis[i]==false){
+                if(detectcycle(i,par,vis,adj)){
+                    return true;
                 }
             }
         }
         return false;
     }
 }
+
