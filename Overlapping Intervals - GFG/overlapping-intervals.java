@@ -42,11 +42,7 @@ class Solution
         // Code here // Code here
         int n = intervals.length; // size of the array
         // sort the given intervals:
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            public int compare(int[] a, int[] b) {
-                return a[0] - b[0];
-            }
-        });
+       Arrays.sort(intervals,(a,b)-> a[0]-b[0]);
 
         List<List<Integer>> ans = new ArrayList<>();
 
