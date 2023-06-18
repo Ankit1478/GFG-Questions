@@ -1,0 +1,36 @@
+class Solution {
+    private static final int MOD = 1_000_000_007;
+    private static final int[][] DIRECTIONS = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+    public int countPaths(int[][] grid) {
+      int m = grid.length;
+        int n = grid[0].length;
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                count = (count + dfs(grid, i, j, -1)) % MOD;
+            }
+        }
+        
+        return count;  
+    }
+    private int dfs(int[][] grid, int i, int j, int prev) {
+        int count = 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] <= prev) {
+            return count;
+        }
+        count = 1;
+        
+        for (int[] dir : DIRECTIONS) {
+            int ni = i + dir[0];
+            int nj = j + dir[1];
+            
+            count = (count + dfs(grid, ni, nj, grid[i][j])) % MOD;
+        }
+        
+        return count;
+    }
+
+}
