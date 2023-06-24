@@ -87,10 +87,10 @@ class Solution
             fast=fast.next.next;
             if(slow==fast){
                  loop =true;
-                  break;
+                 break;
             }
         }
-        if(loop){
+        if(loop==true){
             count=lengthofloop(slow);
         }
         return count;
@@ -106,12 +106,6 @@ class Solution
         return count;
     }
 }
-
-
-
-
-
-
 
 
 
