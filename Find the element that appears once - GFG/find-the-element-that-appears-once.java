@@ -31,24 +31,13 @@ class GfG
 
 class Sol
 {
-    public static int search(int A[], int N)
+    public static int search(int arr[], int n)
     {
-        HashMap<Integer,Integer>map = new HashMap<>();
-        for(int i=0;i<N;i++){
-           if(map.containsKey(A[i])){
-               map.put(A[i],map.get(A[i])+1);
-           }else{
-               map.put(A[i],1);
-           }
+       
+        int XOR = 0;
+        for (int i = 0; i < n; i++) {
+            XOR = XOR ^ arr[i];
         }
-        for(Integer it:map.keySet()){
-            int freq=map.get(it);
-            if(freq==1){
-                return it;
-            }
-        }
-        
-        return -1;
-        
+       return XOR;
     }
 }
