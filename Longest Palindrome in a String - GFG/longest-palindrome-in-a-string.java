@@ -25,37 +25,36 @@ class GFG
 //User function Template for Java
 
 class Solution{
-    static String longestPalin(String S){
-      int start = 0;
-        int end = 0;
-        int low, high;
-        int n = S.length();
-        
-        for (int i = 0; i < n; i++) {
-            // Even length
-            low = i;
-            high = i + 1;
-            
-            while (low >= 0 && high < n && S.charAt(low) == S.charAt(high)) {
-                if ((end - start) < (high - low)) {
-                    start = low;
-                    end = high;
-                }
-                low--;
-                high++;
-            }
-            // Odd length
-            low = i;
-            high = i + 2;
-            while (low >= 0 && high < n && S.charAt(low) == S.charAt(high)) {
-                if ((end - start) < (high - low)) {
-                    start = low;
-                    end = high;
-                }
-                low--;
-                high++;
+    private static String help(String s ,int start,int end){
+        int n=s.length();
+        while(start>=0 && end<n){
+            if(s.charAt(start)==s.charAt(end)){
+                start--;
+                end++;
+            }else{
+                break;
             }
         }
-        return S.substring(start, end + 1);
+        return s.substring(start+1,end);
     }
+    static String longestPalin(String s){
+        int n=s.length();
+        int len=0;
+        String ans="";
+        for(int i=0;i<n;i++){
+            String curr=help(s,i,i); //odd
+            if(curr.length()>len){
+                ans=curr;
+                len=curr.length();
+            }
+            
+            curr=help(s,i,i+1); //even 
+            if(curr.length()>len){
+                ans=curr;
+                len=curr.length();
+            }
+        }
+        return ans;
+    }
+    
 }
