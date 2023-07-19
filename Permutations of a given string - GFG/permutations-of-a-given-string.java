@@ -31,41 +31,32 @@ class GFG
 
 class Solution {
     public List<String> find_permutation(String s) {
-        // Code here
+        char[]ch = s.toCharArray();
         List<String> result = new ArrayList<>();
-        char[] charArray = s.toCharArray();
-
-        // Sort the character array to ensure lexicographically sorted order
-        java.util.Arrays.sort(charArray);
-
-        generatePermutations(charArray, new boolean[charArray.length], new StringBuilder(), result);
+        
+        // sort the char
+        java.util.Arrays.sort(ch);
+        generatePermutations(ch,new boolean[ch.length],new StringBuilder(),result);
         return result;
     }
-    private void generatePermutations(char[] charArray, boolean[] used, StringBuilder current, List<String> result) {
-        if (current.length() == charArray.length) {
-            // Add the current permutation to the result list
-            result.add(current.toString());
+    private void generatePermutations(char[] ch, boolean[] used, StringBuilder current, List<String> ds){
+        if(current.length()==ch.length){
+            ds.add(current.toString());
             return;
         }
-
-        for (int i = 0; i < charArray.length; i++) {
-            if (used[i] || (i > 0 && charArray[i] == charArray[i - 1] && !used[i - 1])) {
+        
+        for(int i=0;i<ch.length;i++){
+            if (used[i] || (i > 0 && ch[i] == ch[i - 1] && !used[i - 1])) {
                 // Skip duplicates to generate unique permutations
                 continue;
             }
-
-            // Mark the character as used
-            used[i] = true;
-
-            // Add the character to the current permutation
-            current.append(charArray[i]);
-
-            // Recur for the next index
-            generatePermutations(charArray, used, current, result);
-
-            // Revert the changes (backtrack) for the next iteration
-            current.deleteCharAt(current.length() - 1);
-            used[i] = false;
+            
+            used[i]=true;
+            current.append(ch[i]);
+            generatePermutations(ch,used,current,ds);
+            
+            current.deleteCharAt(current.length()-1);
+            used[i]=false;
         }
     }
 }
