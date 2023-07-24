@@ -27,10 +27,9 @@ class RodCutting {
 
 class Solution{
     public int cutRod(int price[], int n) {
-        int dp[][]=new int[n][n+1];
-    
+        int prev[]=new int[n+1];
         for(int i=0;i<=n;i++){
-            dp[0][i]=i*price[0];
+            prev[i]=i*price[0];
         }
         for(int idx=1;idx<n;idx++){
             for(int j=0;j<=n;j++){
@@ -39,15 +38,15 @@ class Solution{
                 
                  int take=Integer.MIN_VALUE;
                  
-                 int notake=dp[idx-1][j];
+                 int notake=prev[j];
                  
                    if(rodlength<=j){
-                       take=price[idx]+dp[idx][j-rodlength];
+                       take=price[idx]+prev[j-rodlength];
                    }
-            dp[idx][j]=Math.max(notake,take);
+            prev[j]=Math.max(notake,take);
             }
-           
+            
         }
-         return dp[n-1][n];
+         return prev[n];
     }
 }
