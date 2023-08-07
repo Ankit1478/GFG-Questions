@@ -78,8 +78,12 @@ class Solution {
             return true;
         }
 
-        int nextRow = col == 8 ? row + 1 : row;
-        int nextCol = (col + 1) % 9;
+        int nextRow=row;
+        int nextCol=col+1;
+        if(nextCol==9){
+            nextRow=row+1;
+            nextCol=0;
+        }
 
         if (grid[row][col] != 0) {
             return helper(grid, nextRow, nextCol);
