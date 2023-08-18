@@ -44,14 +44,15 @@ class Solution
         // Your code here
         ArrayList<Integer>ans=new ArrayList<>();
         
-        int i=0;
-        int sum=0;
-        
+        //base case for test case 8 
         if(s==0){
             ans.add(-1);
             return ans;
         }
         
+        int i=0;
+        int sum=0;
+        int j=0;
         
         while(j<arr.length){
             
@@ -74,5 +75,5 @@ class Solution
         return ans;
     }
 }
-       
+    //   A[] = {1,2,3,7,5}   ans = 2+3+4 =12 (2 to 4) beacause1 base indexing 
     
