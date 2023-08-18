@@ -36,46 +36,42 @@ class Main{
 // } Driver Code Ends
 
 
-
-
 class Solution
 {
     //Function to find a continuous sub-array which adds up to a given number.
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
         // Your code here
-        // Your code here
-         ArrayList<Integer> b= new ArrayList<>();
+        ArrayList<Integer>ans=new ArrayList<>();
+        
+        int i=0;
         int sum=0;
-        int l=0;
         
         if(s==0){
-            b.add(-1);
-            return b;
+            ans.add(-1);
+            return ans;
         }
-       
         
-        for(int i=0; i<arr.length; i++){
+        int j=0;
+        while(j<arr.length){
             
-            sum+= arr[i];
+            sum+=arr[j];
             
-            while(sum>s && l<arr.length){
-                sum-=arr[l];
-                l++;
+            while(sum>s && i<arr.length){
+                sum-=arr[i];
+                i++;
             }
             
             if(sum==s){
-                b.add(l+1);
-                b.add(i+1);
+                ans.add(i+1);
+                ans.add(j+1);
                 break;
             }
+            j++;
         }
-        
-        if(b.isEmpty()){
-            b.add(-1);
-        }
-        
-        return b;
-
+        if(ans.isEmpty()) ans.add(-1);
+        return ans;
     }
 }
+       
+    
