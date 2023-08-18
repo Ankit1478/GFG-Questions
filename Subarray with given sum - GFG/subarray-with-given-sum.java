@@ -52,12 +52,12 @@ class Solution
             return ans;
         }
         
-        int j=0;
+        
         while(j<arr.length){
             
             sum+=arr[j];
             
-            while(sum>s ){
+            while(sum>s){
                 sum-=arr[i];
                 i++;
             }
