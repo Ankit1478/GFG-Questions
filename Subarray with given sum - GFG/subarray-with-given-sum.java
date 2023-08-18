@@ -57,7 +57,7 @@ class Solution
             
             sum+=arr[j];
             
-            while(sum>s && i<arr.length){
+            while(sum>s ){
                 sum-=arr[i];
                 i++;
             }
@@ -69,6 +69,7 @@ class Solution
             }
             j++;
         }
+        
         if(ans.isEmpty()) ans.add(-1);
         return ans;
     }
