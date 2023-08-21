@@ -39,6 +39,8 @@ class Solution{
                 step++;
             }
         }
-         return (end >= nums.length - 1) ? step : -1;
+        if(end>=nums.length-1)return step;
+        else return -1;
+        
     }
 }
