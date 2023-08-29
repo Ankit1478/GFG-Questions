@@ -63,9 +63,10 @@ class Solution {
     }
     
     public static void findsubset(int idx,int []nums,ArrayList<Integer>ds,ArrayList<ArrayList<Integer>>ans){
-        if(ans.contains(ds)) return ;
+       
         ans.add(new ArrayList<>(ds));
         for(int i=idx;i<nums.length;i++){
+            if(i>idx && nums[i]==nums[i-1])continue;
             ds.add(nums[i]);
             findsubset(i+1,nums,ds,ans);
             ds.remove(ds.size()-1);
