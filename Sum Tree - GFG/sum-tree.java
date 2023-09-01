@@ -135,7 +135,7 @@ class Solution
 	    if(root.data!=(leftSum+rightSum)){
 	         isSumTree[0] = false;
 	    }
-	    return root.data+leftSum+rightSum;
+	    return root.data+isSumTreeUtil(root.left, isSumTree)+isSumTreeUtil(root.right, isSumTree);
 	}
 }
 
