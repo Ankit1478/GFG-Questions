@@ -1,2 +1,2 @@
-# Leetcode-Questions
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+# Geeks for Geeks PTOD
+last 6 months Questions of daily ptod
